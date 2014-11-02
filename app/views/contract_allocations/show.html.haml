@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Contract:
+  = @contract_allocation.contract_id
+%p
+  %strong Labor category:
+  = @contract_allocation.labor_category_id
+%p
+  %strong Labor rate:
+  = @contract_allocation.labor_rate
+%p
+  %strong Hours:
+  = @contract_allocation.hours
+= link_to 'Edit', edit_contract_allocation_path(@contract_allocation)
+|
+\#{link_to 'Back', contract_allocations_path}

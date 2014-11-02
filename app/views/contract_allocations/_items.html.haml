@@ -1,0 +1,39 @@
+%table.table
+  %thead
+    %tr
+      %th contract id
+      %th labor category id
+      %th labor rate
+      %th hours
+      %th total
+      %th{:colspan => "3"}
+  %tbody
+    - total_hours, total_amounts = 0, 0
+    - @contract_allocations.each do |contract_allocation|
+      %tr
+        - total_hours += contract_allocation.hours
+        - total_amounts += contract_allocation.labor_rate * contract_allocation.hours
+        %td= contract_allocation.contract_id
+        %td= contract_allocation.labor_category_id
+        %td
+          = link_to '#', class: 'labor_rate_editable', id: "labor_rate", data:{resource: 'contract_allocation', type:'text', name: 'labor_rate', url: contract_allocation_path(contract_allocation), :'original-title'=>'Enter labor rate'} do
+            = contract_allocation.labor_rate
+        %td
+          
+          = link_to '#', class: 'hours_editable', id: "hours_#{contract_allocation.id}", data:{resource: 'contract_allocation', type:'text', name: 'hours', url: contract_allocation_path(contract_allocation), :'original-title'=>'Enter labor hours'} do
+            = contract_allocation.hours
+        %td.total
+          = number_to_currency(contract_allocation.labor_rate * contract_allocation.hours, precision: 2)
+          
+        %td= link_to 'Show', contract_allocation
+        %td= link_to 'Edit', edit_contract_allocation_path(contract_allocation)
+        %td= link_to 'Destroy', contract_allocation, method: :delete, data: { confirm: 'Are you sure?' }
+    %tr
+      %td Totals:
+      %td{:colspan => "2"}
+      %td.total_hours 
+        = total_hours
+      %td.total_amounts 
+        = number_to_currency(total_amounts, precision: 2)
+      %td{:colspan => "3"}
+%br

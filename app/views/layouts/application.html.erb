@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>sample application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags%>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div id="header">
+        <h1>Rails 4 Sample Application</h1>
+      </div>
+
+      <div id="main">
+        <div id="content">
+          <%= yield %>    
+        </div>
+      </div>
+
+      <div id="footer">
+        
+      </div>
+    </div>
+    
+  </body>
+</html>

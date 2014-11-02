@@ -1,0 +1,27 @@
+= form_for(@contract_allocation) do |f|
+  - if @contract_allocation.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@contract_allocation.errors.count, "error")
+        prohibited this contract_allocation from being saved:
+      %ul
+        - @contract_allocation.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :contract_id 
+    %br
+      = f.number_field :contract_id
+  .field
+    = f.label :labor_category_id
+    %br
+      = f.number_field :labor_category_id
+  .field
+    = f.label :labor_rate
+    %br
+      = f.text_field :labor_rate
+  .field
+    = f.label :hours
+    %br
+      = f.text_field :hours
+  .actions
+    = f.submit
